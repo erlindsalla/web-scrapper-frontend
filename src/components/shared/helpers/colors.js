@@ -1,0 +1,23 @@
+export default {
+    white: '#ffffff',
+    fog: '#F4F4F4',
+    lightGrey: '#E9EAF1',
+    grey: '#BDBFC9',
+    darkGrey: '#9092A1',
+    darkestGrey: '#434343',
+    black: '#13141A',
+    red: '#F2453D',
+    purple: '#9C27B0',
+    blue: '#2C98F0',
+    orange: '#FF9800',
+    green: '#4CAF50',
+    lightGreen : '#DBEFDC',
+    teal: '#009688',
+    textColor: '#748AA1',
+    backgroundColor: '#F0EFEF',
+    lightBlue: '#D4E9FE',
+    brownGrey: '#9092A1',
+    veryDarkGrey: '#748AA1',
+    yellow: '#FF9800',
+  };
+  
