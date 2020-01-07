@@ -126,7 +126,7 @@ export const Scraper = (props) => {
                     <Button type='submit'>
                         submit
                     </Button>
-                <Button onClick={ () => {props.toggle()}}>
+                <Button onClick={ (e) => {props.toggle(); e.preventDefault()}}  >
                         See All Data
                 </Button>
             </FooterWrapper>
