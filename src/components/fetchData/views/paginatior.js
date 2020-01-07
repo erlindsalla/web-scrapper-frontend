@@ -96,7 +96,6 @@ const Paginator = ({ changePage, numberOfPages, page }) => {
   const canForwardButtonBeClicked = page !== numberOfPages;
 
   let arrayButtons = [];
-
   if (numberOfPages <= 5) {
     arrayButtons = [...new Array(numberOfPages)].map((_, index) => ({
       type: arrayButtonTypes.button,

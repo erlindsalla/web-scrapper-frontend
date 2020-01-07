@@ -34,10 +34,12 @@ const DataView = (props) => {
     const [city, setCity] = useState();
     const [phone, setPhone] = useState(null)
     const [email, setEmail] = useState(null)
+
     const filterData = async (city, currentPage, phone, email) =>{
       var response = await API.post('allRestaurants', {city, currentPage, phone, email})
       setData(response.data.resData);
-      setTotalPages(response.data.resDataLength / 100)
+      console.log(response.data.resDataLength)
+      setTotalPages(Math.floor(response.data.resDataLength / 100))
     }
 
     useEffect(() => {

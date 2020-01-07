@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import API from '../../shared/api/api';
 import styled from 'styled-components';
 import { Formik } from 'formik';
 import colors from '../../shared/helpers/colors';
@@ -38,24 +39,19 @@ const Input = styled.input`
 const FooterWrapper = styled.div`
     margin-top: 20px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 `;
 
-const ButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  background-color: ${colors.white};
-  font-size: 16px;
-  text-align: center;
-  border-radius: 5px;
-  transition: all 0.15s ease-in-out 0s;
-  padding: 6px 20px;
-  cursor: pointer;
-  border-color: ${colors.black}
-`;
-const ButtonText = styled.span`
-  color: ${colors.textColor}; 
-  width: 100%; font-size: 16px;
+
+const Button = styled.button`
+    background-color: ${colors.white};
+    font-size: 16px;
+    text-align: center;
+    border-radius: 5px;
+    color: ${colors.textColor}; 
+    font-size: 16px;
+    min-width: 120px;
+    height: 40px; 
 `;
 export const Scraper = (props) => {
 
@@ -71,23 +67,20 @@ export const Scraper = (props) => {
                  totalNumberOfPages: ''
             }}
             
-            onSubmit={(values, { setSubmitting }) => {
-                fetch('http://localhost:3000/fetchRestaurantData', {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
+            onSubmit={(values) => {
+                console.log('here', API)
+                const scrapeData = async () =>{
+                  const response = await API.post('fetchRestaurantData', {
                         url: values.url,
                         cityName: values.name,
                         pageNumber: values.totalNumberOfPages
-                    }),
-                })
-                .then(response => {console.log(response)})
-                .catch((error) => {
-                    console.error(error);
-                });
+                    })
+                    console.log('scrape dat response ===>', response);
+                    if(response.data === 'ok'){
+                        alert('Data is being scraped!')
+                    }
+                }
+                scrapeData()
             }}
         >
         {({
@@ -100,7 +93,6 @@ export const Scraper = (props) => {
             isSubmitting,
         }) => (
             <form onSubmit={handleSubmit}>
-            
             <InputWrapper>
                 <Label>Url</Label>
                 <Input  
@@ -131,16 +123,12 @@ export const Scraper = (props) => {
             </InputWrapper>
             {errors.password && touched.password && errors.password}
             <FooterWrapper>
-                <ButtonWrapper type="submit" >
-                    <ButtonText>
-                        Submit
-                    </ButtonText>
-                </ButtonWrapper>
-                <ButtonWrapper onClick={ () => {props.toggle()}}>
-                    <ButtonText>
+                    <Button type='submit'>
+                        submit
+                    </Button>
+                <Button onClick={ () => {props.toggle()}}>
                         See All Data
-                    </ButtonText>
-                </ButtonWrapper>
+                </Button>
             </FooterWrapper>
             </form>
         )}

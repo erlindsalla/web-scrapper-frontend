@@ -51,7 +51,6 @@ const Filters = props => {
             label: data.name
           })
         })
-        
       }
       fetchCities()
     });
